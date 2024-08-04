@@ -1,18 +1,12 @@
-# Starter Firebot Custom Script in Typescript
+# Firebot MIDI
+> [!CAUTION]
+> This script requires the latest **nightly** of Firebot v5.63.0 beta
 
-### Setup
-1. Create a new repo based off this template (Click "Use this Template" above) or simply fork it
-2. `npm install`
-
-### Building
-Dev:
-1. `npm run build:dev`
-- Automatically copies the compiled .js to Firebot's scripts folder.
-
-Release:
-1. `npm run build`
-- Copy .js from `/dist`
-
-### Note
-- Keep the script definition object (that contains the `run`, `getScriptManifest`, and `getDefaultParameters` funcs) in the `main.ts` file as it's important those function names don't get minimized.
-- Edit the `"scriptOutputName"` property in `package.json` to change the filename of the outputted script.
+### Install
+1. Download the [latest release firebot-midi.zip](https://github.com/ebiggz/firebot-script-midi/releases)
+2. Extract the zip into Firebot's `scripts` folder. 
+> [!IMPORTANT]
+> Ensure the entire `/firebot-midi` folder is extracted into the `scripts` folder.
+3. Add as a Start Up Script in Firebot (Settings > Scripts > Manage Start Up Scripts)
+> [!NOTE]
+> Make sure to select `firebot-midi/script.js` as the script file when adding.
