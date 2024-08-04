@@ -1,7 +1,11 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const packageJson = require("./package.json");
 
+/**
+ * @type {import("webpack").Configuration}
+ */
 module.exports = {
   target: "node",
   mode: "production",
@@ -12,11 +16,11 @@ module.exports = {
   output: {
     libraryTarget: "commonjs2",
     libraryExport: "default",
-    path: path.resolve(__dirname, "./dist"),
+    path: path.resolve(__dirname, "./dist/firebot-midi"),
     filename: `${packageJson.scriptOutputName}.js`,
   },
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: [".ts", ".js", ".node"],
   },
   module: {
     rules: [
@@ -28,7 +32,6 @@ module.exports = {
   },
   optimization: {
     minimize: true,
-
     minimizer: [
       new TerserPlugin({
         terserOptions: {
@@ -42,4 +45,11 @@ module.exports = {
       }),
     ],
   },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: "./node_modules/@julusian/midi/prebuilds", to: "./prebuilds" },
+      ],
+    }),
+  ]
 };

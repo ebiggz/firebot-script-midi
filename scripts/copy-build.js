@@ -2,13 +2,7 @@
  *  Copies the built script .js to Firebot's scripts folder
  */
 const fs = require("fs").promises;
-const { Console } = require("console");
 const path = require("path");
-
-const extractScriptName = () => {
-  const packageJson = require("../package.json");
-  return `${packageJson.scriptOutputName}.js`;
-};
 
 const getFirebotScriptsFolderPath = () => {
   // determine os app data folder
@@ -55,17 +49,11 @@ const getFirebotScriptsFolderPath = () => {
 const main = async () => {
   const firebotScriptsFolderPath = getFirebotScriptsFolderPath();
 
-  const scriptName = extractScriptName();
+  await fs.cp('./dist/', firebotScriptsFolderPath, {
+    recursive: true,
+  });
 
-  const srcScriptFilePath = path.resolve(`./dist/${scriptName}`);
-  const destScriptFilePath = path.join(
-    firebotScriptsFolderPath,
-    `${scriptName}`
-  );
-
-  await fs.copyFile(srcScriptFilePath, destScriptFilePath);
-
-  console.log(`Successfully copied ${scriptName} to Firebot scripts folder.`);
+  console.log(`Successfully copied to Firebot scripts folder.`);
 };
 
 main();
