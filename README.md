@@ -1,5 +1,5 @@
 > [!CAUTION]
-> This script requires the latest **nightly** of Firebot v5.63.0 beta
+> This script requires Firebot v5.63.0 or later!
 # Firebot MIDI
 
 ### Install
